@@ -7,7 +7,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.lifecycle.LifecycleOwner
 import com.airbnb.epoxy.EpoxyController
 import nl.frank.jetpacktestapplication.R
 import nl.frank.jetpacktestapplication.databinding.TextRowItemBinding
@@ -18,10 +17,10 @@ import nl.frank.jetpacktestapplication.epoxy.ViewBindingKotlinModel
 data class TitleListItemModel(val viewState: String) :
     ViewBindingKotlinModel<TextRowItemBinding>(R.layout.text_row_item, SpanSize.TOTAL) {
 
-    lateinit var lifecycle: LifecycleOwner
+    lateinit var lifecycleOwnerProvider: LifecycleOwnerProvider
 
-    fun lifecycle(lifecycle: LifecycleOwner): TitleListItemModel {
-        this.lifecycle = lifecycle
+    fun lifecycleOwnerProvider(lifecycleOwnerProvider: LifecycleOwnerProvider): TitleListItemModel {
+        this.lifecycleOwnerProvider = lifecycleOwnerProvider
         return this
     }
 
@@ -51,7 +50,7 @@ data class TitleListItemModel(val viewState: String) :
         return super.buildView(parent).apply {
             findViewById<ComposeView>(R.id.compose_item_test).setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnLifecycleDestroyed(
-                    lifecycle
+                    lifecycleOwnerProvider()
                 )
             )
         }
@@ -60,11 +59,11 @@ data class TitleListItemModel(val viewState: String) :
 
 fun EpoxyController.buildTitleListItem(
     viewState: String,
-    lifecycle: LifecycleOwner,
+    lifecycleOwnerProvider: LifecycleOwnerProvider,
     id: String,
 ) {
     TitleListItemModel(viewState = viewState)
-        .lifecycle(lifecycle)
+        .lifecycleOwnerProvider(lifecycleOwnerProvider)
         .id(id)
         .addTo(this)
 }

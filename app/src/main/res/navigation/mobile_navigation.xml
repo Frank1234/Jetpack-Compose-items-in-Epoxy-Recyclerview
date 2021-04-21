@@ -16,10 +16,4 @@
         android:name="nl.frank.jetpacktestapplication.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="nl.frank.jetpacktestapplication.ui.home.HomeFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_home" />
 </navigation>

@@ -21,8 +21,6 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val listViewController = ListViewController()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +44,7 @@ class HomeFragment : Fragment() {
 
     private fun initRecyclerView() {
 
-        listViewController.registerLifecycleOwnerProvider { viewLifecycleOwner }
+        val listViewController = ListViewController { viewLifecycleOwner }
         listViewController.setData(generateTestData())
 
         binding.recyclerList.setController(listViewController)
@@ -55,7 +53,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // binding.recyclerList.adapter = null
+        binding.recyclerList.adapter = null
         _binding = null
     }
 }

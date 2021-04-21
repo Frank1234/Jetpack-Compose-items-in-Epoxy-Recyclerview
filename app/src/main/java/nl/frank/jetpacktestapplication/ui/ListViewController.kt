@@ -1,26 +1,25 @@
 package nl.frank.jetpacktestapplication.ui
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import com.airbnb.epoxy.TypedEpoxyController
 
-typealias LifecycleProvider = () -> LifecycleOwner
+typealias LifecycleOwnerProvider = () -> LifecycleOwner
 
-class ListViewController : TypedEpoxyController<List<String>>() {
+class ListViewController(private val lifecycleProvider: LifecycleOwnerProvider) : TypedEpoxyController<List<String>>() {
 
-    var lifecycleProvider: LifecycleProvider? = null
-
-    fun registerLifecycleOwnerProvider(lifecycleProvider: LifecycleProvider) {
-        this.lifecycleProvider = lifecycleProvider
+    init {
+        Log.d("Init you farnk", "Init you frank")
     }
 
     override fun buildModels(
         titles: List<String>,
     ) {
 
-        val lifecycle = lifecycleProvider?.invoke() ?: throw Error("No lifecycle given")
+        val lifecycleProvider = lifecycleProvider ?: throw Error("No lifecycle given")
 
         titles.forEachIndexed { index, item ->
-            buildTitleListItem(item, lifecycle, "$index")
+            buildTitleListItem(item, lifecycleProvider, "$index")
         }
     }
 }
