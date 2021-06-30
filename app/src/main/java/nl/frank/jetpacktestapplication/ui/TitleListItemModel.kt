@@ -31,7 +31,7 @@ data class TitleListItemModel(val viewState: String) :
             "bind() called. composablesInflated $composablesInflated, hasComposition ${composeItemTest.hasComposition}, viewState $viewState"
         )
 
-        textView.text = "Traditional $viewState"
+        textView.text = "Traditional $viewState ${lifecycleOwnerProvider()}"
 
         composeItemTest.setContent {
             // In Compose world
@@ -46,7 +46,11 @@ data class TitleListItemModel(val viewState: String) :
     }
 
     override fun buildView(parent: ViewGroup): View {
-        // default ViewCompositionStrategy is destroy on unattach from window, but that happends in a recyclerview all the time. We destroy on fragment's lifecycle destroy:
+        Log.d(
+            "Test",
+            "buildView() called"
+        )
+        // default ViewCompositionStrategy is destroy on unattach from window, but that happends in a recyclerview all the time. We destroy on fragment's view lifecycle destroy:
         return super.buildView(parent).apply {
             findViewById<ComposeView>(R.id.compose_item_test).setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnLifecycleDestroyed(
