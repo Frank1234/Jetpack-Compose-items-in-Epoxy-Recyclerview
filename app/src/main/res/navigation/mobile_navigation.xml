@@ -7,21 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="nl.frank.jetpacktestapplication.ui.home.HomeFragment"
+        android:name="nl.frank.jetpacktestapplication.ui.home.SomeTabFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_some_tab" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="nl.frank.jetpacktestapplication.ui.home.HomeFragment"
+        android:name="nl.frank.jetpacktestapplication.ui.home.SomeTabFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="nl.frank.jetpacktestapplication.ui.home.HomeFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_some_tab" />
 
     <action
         android:id="@+id/action_test"
@@ -29,6 +23,6 @@
 
     <fragment
         android:id="@+id/test"
-        android:name="nl.frank.jetpacktestapplication.ui.notifications.NotificationsFragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="nl.frank.jetpacktestapplication.ui.test.TestFragment"
+        tools:layout="@layout/fragment_some_tab" />
 </navigation>

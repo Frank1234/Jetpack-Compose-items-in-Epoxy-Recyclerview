@@ -6,18 +6,16 @@ import com.airbnb.epoxy.TypedEpoxyController
 
 typealias LifecycleOwnerProvider = () -> LifecycleOwner
 
-class ListViewController(private val lifecycleProvider: LifecycleOwnerProvider) : TypedEpoxyController<List<String>>() {
+class ListViewController(private val lifecycleProvider: LifecycleOwnerProvider) :
+    TypedEpoxyController<List<String>>() {
 
     init {
-        Log.d("Init you farnk", "Init you frank")
+        Log.d("Test", "New ListViewController constructed")
     }
 
     override fun buildModels(
         titles: List<String>,
     ) {
-
-        val lifecycleProvider = lifecycleProvider ?: throw Error("No lifecycle given")
-
         titles.forEachIndexed { index, item ->
             buildTitleListItem(item, lifecycleProvider, "$index")
         }

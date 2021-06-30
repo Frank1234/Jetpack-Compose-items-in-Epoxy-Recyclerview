@@ -13,7 +13,6 @@ import nl.frank.jetpacktestapplication.databinding.TextRowItemBinding
 import nl.frank.jetpacktestapplication.epoxy.SpanSize
 import nl.frank.jetpacktestapplication.epoxy.ViewBindingKotlinModel
 
-// viewState is just a title string
 data class TitleListItemModel(val viewState: String) :
     ViewBindingKotlinModel<TextRowItemBinding>(R.layout.text_row_item, SpanSize.TOTAL) {
 
