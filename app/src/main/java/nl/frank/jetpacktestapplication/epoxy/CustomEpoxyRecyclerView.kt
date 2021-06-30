@@ -11,7 +11,8 @@ class CustomEpoxyRecyclerView @kotlin.jvm.JvmOverloads constructor(
 ) : EpoxyRecyclerView(context, attrs, defStyleAttr) {
 
     override fun shouldShareViewPoolAcrossContext(): Boolean {
-        // a shared pool per activity does not work well in combination with ComposeViews atm
+        // a shared pool per activity does not work well in combination with ComposeViews at the moment.
+        // when we do use a shared pool: composeView.setContent in an item sometimes results in an empty view.
         return false
     }
 }
