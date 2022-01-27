@@ -1,4 +1,4 @@
-# Try-out using Epoxy with Jetpack Compose Recyclerview item views.
+# Try-out: using Jetpack Composables inside Epoxy Recyclerviews.
 
 Ugly code, I tried/tested many things and left some of the code in here :).
 
