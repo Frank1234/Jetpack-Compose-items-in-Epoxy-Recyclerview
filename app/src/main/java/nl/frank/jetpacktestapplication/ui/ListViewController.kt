@@ -17,7 +17,11 @@ class ListViewController(private val lifecycleProvider: LifecycleOwnerProvider) 
         titles: List<String>,
     ) {
         titles.forEachIndexed { index, item ->
-            buildTitleListItem(item, lifecycleProvider, "$index")
+            if (item.startsWith("Title")) {
+                buildTitleListItem(item, lifecycleProvider, "$index")
+            } else {
+                buildOtherListItem(item, "$index")
+            }
         }
     }
 }

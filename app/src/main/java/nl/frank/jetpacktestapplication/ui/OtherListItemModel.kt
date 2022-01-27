@@ -13,26 +13,19 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.airbnb.epoxy.EpoxyController
 import nl.frank.jetpacktestapplication.R
-import nl.frank.jetpacktestapplication.databinding.TitleRowItemBinding
+import nl.frank.jetpacktestapplication.databinding.OtherRowItemBinding
 import nl.frank.jetpacktestapplication.epoxy.SpanSize
 import nl.frank.jetpacktestapplication.epoxy.ViewBindingKotlinModel
 import java.util.Random
 
-data class TitleListItemModel(val viewState: String) :
-    ViewBindingKotlinModel<TitleRowItemBinding>(R.layout.title_row_item, SpanSize.TOTAL) {
+data class OtherListItemModel(val viewState: String) :
+    ViewBindingKotlinModel<OtherRowItemBinding>(R.layout.other_row_item, SpanSize.TOTAL) {
 
-    lateinit var lifecycleOwnerProvider: LifecycleOwnerProvider
-
-    fun lifecycleOwnerProvider(lifecycleOwnerProvider: LifecycleOwnerProvider): TitleListItemModel {
-        this.lifecycleOwnerProvider = lifecycleOwnerProvider
-        return this
-    }
-
-    override fun TitleRowItemBinding.bind() {
+    override fun OtherRowItemBinding.bind() {
         val composablesInflated = composeItemTest.childCount > 0
         Log.d(
             "Test",
-            "Title bind() called. $composeItemTest , composablesInflated $composablesInflated, hasComposition ${composeItemTest.hasComposition}, viewState $viewState"
+            "Other bind() called. $composeItemTest , composablesInflated $composablesInflated, hasComposition ${composeItemTest.hasComposition}, viewState $viewState"
         )
 
         composeItemTest.setContent {
@@ -57,27 +50,22 @@ data class TitleListItemModel(val viewState: String) :
     override fun buildView(parent: ViewGroup): View {
         Log.d(
             "Test",
-            "Title buildView() called"
+            "Other buildView() called"
         )
         // default ViewCompositionStrategy is destroy on unattach from window, but that happends in a recyclerview all the time. We destroy on fragment's view lifecycle destroy:
         return super.buildView(parent).apply {
             findViewById<ComposeView>(R.id.compose_item_test).setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
-                // ViewCompositionStrategy.DisposeOnLifecycleDestroyed(
-                //     lifecycleOwnerProvider()
-                // )
             )
         }
     }
 }
 
-fun EpoxyController.buildTitleListItem(
+fun EpoxyController.buildOtherListItem(
     viewState: String,
-    lifecycleOwnerProvider: LifecycleOwnerProvider,
     id: String,
 ) {
-    TitleListItemModel(viewState = viewState)
-        .lifecycleOwnerProvider(lifecycleOwnerProvider)
+    OtherListItemModel(viewState = viewState)
         .id(id)
         .addTo(this)
 }
