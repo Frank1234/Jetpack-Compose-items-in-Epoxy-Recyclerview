@@ -8,7 +8,7 @@ Ugly code, I tried/tested many things and left some of the code in here :).
    in [CustomEpoxyRecyclerView](./app/src/main/java/nl/frank/jetpacktestapplication/epoxy/CustomEpoxyRecyclerView.kt))
 2. Dispose of compositions with ViewCompositionStrategy attached to the owner's lifecycle, so that
    compositions are not disposed on every unbind (the default). You can do this easily using:
-   [ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed](https://developer.android.com/reference/kotlin/androidx/compose/ui/platform/ViewCompositionStrategy.DisposeOnDetachedFromWindow?hl=nl)
+   [ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed](https://developer.android.com/reference/kotlin/androidx/compose/ui/platform/ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed?hl=nl)
    as shown
    in [TitleListItemModel](./app/src/main/java/nl/frank/jetpacktestapplication/ui/TitleListItemModel.kt)
 3. After implementing, test that your Composables don't dispose or rebuild when you don't
