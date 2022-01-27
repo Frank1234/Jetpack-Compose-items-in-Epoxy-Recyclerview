@@ -27,9 +27,17 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
-
+    signingConfigs {
+        adhoc {
+            keyAlias 'adhoc'
+            keyPassword 'adhocc'
+            storeFile file("../adhoc.key")
+            storePassword 'adhocc'
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.adhoc
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
