@@ -1,8 +1,8 @@
-## Try-out using Epoxy with Jetpack Compose Recyclerview item views.
+# Try-out using Epoxy with Jetpack Compose Recyclerview item views.
 
 Ugly code, I tried/tested many things and left some of the code in here :).
 
-Main take-away ot use Composables in Epoxy Recyclerviews:
+## Main take-aways, to use Composables in Epoxy Recyclerviews:
 
 1. Don't share a view-pool activity-wide, but use one per Recyclerview. (set
    in [CustomEpoxyRecyclerView](./app/src/main/java/nl/frank/jetpacktestapplication/epoxy/CustomEpoxyRecyclerView.kt))
@@ -13,7 +13,7 @@ Main take-away ot use Composables in Epoxy Recyclerviews:
    in [TitleListItemModel](./app/src/main/java/nl/frank/jetpacktestapplication/ui/TitleListItemModel.kt)
 3. After implementing, test that your Composables don't dispose or rebuild when you don't
    want/expect them to. When scrolling a list, they should only rebind.
-4. When you add a compose view to a Horizontal Scrolling nested recyclerview, beware and test
+4. When you add a Composable to a Horizontal Scrolling nested recyclerview, beware and test
    carefully, I did not test this.
 
 Example item model
